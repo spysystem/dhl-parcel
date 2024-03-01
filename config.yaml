@@ -1,0 +1,9 @@
+# https://openapi-generator.tech/docs/usage/#generate
+apiPackage: Api
+gitRepoId: dhl-parcel
+gitUserId: spysystem
+httpUserAgent: "OpenAPI-Generator-php"
+invokerPackage: Spy\DHLParcel
+modelPackage: Model
+composerVendorName: spysystem
+composerProjectName: dhl-parcel
