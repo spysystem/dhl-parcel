@@ -1,6 +1,7 @@
 # OpenAPIClient-php
 
-Welcome to the Deutsche Post International API! <br/><br/> This API provides an interface for our shipping and tracking services. It enables open integration channels for our customers and partners.
+Note: This is the specification of the DPDHL Group Parcel DE Shipping API for Post & Parcel Germany. This REST web service allows business customers to create shipping labels on demand.
+
 
 
 ## Installation & Usage
@@ -50,104 +51,87 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Spy\DHLParcel\Api\AWBsApi(
+$apiInstance = new Spy\DHLParcel\Api\GeneralApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$authorization = 'Bearer [place  OAuth access_token here, without brackets]'; // string | Bearer Auth access_token together with the \"Bearer\" prefix is required. **Example** of the header value:\"*Bearer 0UuA.....*\"
-$body = new \Spy\DHLParcel\Model\Awb(); // \Spy\DHLParcel\Model\Awb | The awb that shall be created.
 
 try {
-    $result = $apiInstance->createAwb($authorization, $body);
+    $result = $apiInstance->rootGet();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AWBsApi->createAwb: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling GeneralApi->rootGet: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
 
 ## API Endpoints
 
-All URIs are relative to *https://api-sandbox.dhl.com*
+All URIs are relative to *https://api-eu.dhl.com/parcel/de/shipping/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AWBsApi* | [**createAwb**](docs/Api/AWBsApi.md#createawb) | **POST** /dpi/shipping/v1/awbs | Create a Single AWB
-*AuthenticationApi* | [**getAccessToken**](docs/Api/AuthenticationApi.md#getaccesstoken) | **GET** /dpi/v1/auth/accesstoken | Get Access New Token
-*AuthenticationApi* | [**getAccessTokenInfo**](docs/Api/AuthenticationApi.md#getaccesstokeninfo) | **GET** /dpi/v1/auth/accesstoken/info | Get Access Token Info
-*AuthenticationApi* | [**revokeAccessToken**](docs/Api/AuthenticationApi.md#revokeaccesstoken) | **GET** /dpi/v1/auth/accesstoken/revoke | Revoke Access Token
-*BulkOrdersApi* | [**createBulkOrder**](docs/Api/BulkOrdersApi.md#createbulkorder) | **POST** /dpi/shipping/v1/bulk/{customerEkp}/orders | Create a Bulk Order
-*BulkOrdersApi* | [**createMixedOrder**](docs/Api/BulkOrdersApi.md#createmixedorder) | **POST** /dpi/shipping/v1/bulk/{customerEkp}/mixedorders | Create a Mixed Order
-*BulkOrdersApi* | [**downloadBulkPaperwork**](docs/Api/BulkOrdersApi.md#downloadbulkpaperwork) | **GET** /dpi/shipping/v1/bulk/{customerEkp}/orders/{orderId}/paperwork | Get Bulk Paperwork
-*BulkOrdersApi* | [**getBagTagLabel**](docs/Api/BulkOrdersApi.md#getbagtaglabel) | **GET** /dpi/shipping/v1/bulk/label | Get Bag Tag Label
-*BulkOrdersApi* | [**getBulkOrder**](docs/Api/BulkOrdersApi.md#getbulkorder) | **GET** /dpi/shipping/v1/bulk/{customerEkp}/orders/{orderId} | Get a Bulk Order
-*CustomersApi* | [**createClosedBag**](docs/Api/CustomersApi.md#createclosedbag) | **POST** /dpi/shipping/v1/customers/{customerEkp}/bags | Create a Closed Bag
-*CustomersApi* | [**createCustomerOrder**](docs/Api/CustomersApi.md#createcustomerorder) | **POST** /dpi/shipping/v1/customers/{customerEkp}/orders | Create Order
-*CustomersApi* | [**createItem**](docs/Api/CustomersApi.md#createitem) | **POST** /dpi/shipping/v1/customers/{customerEkp}/items | Create Single Item
-*CustomersApi* | [**createReturnItem**](docs/Api/CustomersApi.md#createreturnitem) | **POST** /dpi/shipping/v1/customers/{customerEkp}/returnitems | Create a Return Item
-*CustomersApi* | [**getBagTag**](docs/Api/CustomersApi.md#getbagtag) | **GET** /dpi/shipping/v1/customers/{customerEkp}/bags/{bagId}/label | Get Label for Bag
-*CustomersApi* | [**getCustomerItemLabel**](docs/Api/CustomersApi.md#getcustomeritemlabel) | **GET** /dpi/shipping/v1/customers/{customerEkp}/items/{barcode}/label | Get Label for Item
-*CustomersApi* | [**getItemByBarcode**](docs/Api/CustomersApi.md#getitembybarcode) | **GET** /dpi/shipping/v1/customers/{customerEkp}/items/{barcode} | Retrieve Data for Item
-*CustomersApi* | [**getItems**](docs/Api/CustomersApi.md#getitems) | **GET** /dpi/shipping/v1/customers/{customerEkp}/items | Get Available Items
-*CustomersApi* | [**getReturnItemLabel**](docs/Api/CustomersApi.md#getreturnitemlabel) | **GET** /dpi/shipping/v1/customers/{customerEkp}/returnitems/{barcode}/label | Retrieve Label for Return Item
-*CustomersApi* | [**updateCustomerItem**](docs/Api/CustomersApi.md#updatecustomeritem) | **PUT** /dpi/shipping/v1/customers/{customerEkp}/items/{barcode} | Update a single item.
-*ItemsApi* | [**deleteItem**](docs/Api/ItemsApi.md#deleteitem) | **DELETE** /dpi/shipping/v1/items/{itemId} | Delete Item
-*ItemsApi* | [**getItemById**](docs/Api/ItemsApi.md#getitembyid) | **GET** /dpi/shipping/v1/items/{itemId} | Get Item
-*ItemsApi* | [**getItemLabel**](docs/Api/ItemsApi.md#getitemlabel) | **GET** /dpi/shipping/v1/items/{itemId}/label | Get Item Label
-*ItemsApi* | [**updateItemInOrder**](docs/Api/ItemsApi.md#updateiteminorder) | **PUT** /dpi/shipping/v1/items/{itemId} | Update item
-*OrdersApi* | [**addOrderItems**](docs/Api/OrdersApi.md#addorderitems) | **POST** /dpi/shipping/v1/orders/{orderId}/items | Add Items to an Order
-*OrdersApi* | [**createOrder**](docs/Api/OrdersApi.md#createorder) | **POST** /dpi/shipping/v1/orders | Create Order
-*OrdersApi* | [**finalizeOrder**](docs/Api/OrdersApi.md#finalizeorder) | **POST** /dpi/shipping/v1/orders/{orderId}/finalization | Finalize open Order
-*OrdersApi* | [**getOrder**](docs/Api/OrdersApi.md#getorder) | **GET** /dpi/shipping/v1/orders/{orderId} | Get Order
-*OrdersApi* | [**getShipments**](docs/Api/OrdersApi.md#getshipments) | **GET** /dpi/shipping/v1/orders/{orderId}/shipments | Get Shipments for an Order
-*ShipmentsApi* | [**getAwbLabel**](docs/Api/ShipmentsApi.md#getawblabel) | **GET** /dpi/shipping/v1/shipments/{awb}/awblabels | Get AWB Label
-*ShipmentsApi* | [**getItemLabels**](docs/Api/ShipmentsApi.md#getitemlabels) | **GET** /dpi/shipping/v1/shipments/{awb}/itemlabels | Get Item Labels
-*ShipmentsApi* | [**getShipment**](docs/Api/ShipmentsApi.md#getshipment) | **GET** /dpi/shipping/v1/shipments/{awb} | Get Shipment Data for AWB
-*TrackingsApi* | [**getBagAndEvents**](docs/Api/TrackingsApi.md#getbagandevents) | **GET** /dpi/tracking/v3/bag/{customerBagId} | Get Trackings of bags V3
-*TrackingsApi* | [**getTrackingForAirwayBill**](docs/Api/TrackingsApi.md#gettrackingforairwaybill) | **GET** /dpi/tracking/v3/trackings/awb/{awb} | Get Tracking - Shipment V3
-*TrackingsApi* | [**getTrackingForAwb**](docs/Api/TrackingsApi.md#gettrackingforawb) | **GET** /dpi/tracking/v1/trackings/awb/{awb} | Get Tracking - Shipment V1
-*TrackingsApi* | [**getTrackingsBasic**](docs/Api/TrackingsApi.md#gettrackingsbasic) | **GET** /dpi/tracking/v1/trackings/{barcode} | Get Trackings V1
-*TrackingsApi* | [**getTrackingsExtended**](docs/Api/TrackingsApi.md#gettrackingsextended) | **GET** /dpi/tracking/v3/trackings/{barcode} | Get Trackings V3
-*ValidationApi* | [**validateOrderItem**](docs/Api/ValidationApi.md#validateorderitem) | **POST** /dpi/shipping/v1/validation | Validate Order Items
+*GeneralApi* | [**rootGet**](docs/Api/GeneralApi.md#rootget) | **GET** / | Return API version
+*ManifestsApi* | [**getManifests**](docs/Api/ManifestsApi.md#getmanifests) | **GET** /manifests | Retrieve daily manifest document
+*ManifestsApi* | [**manifestsPost**](docs/Api/ManifestsApi.md#manifestspost) | **POST** /manifests | Mark shipments as being ready for shipping
+*ShipmentsAndLabelsApi* | [**createOrders**](docs/Api/ShipmentsAndLabelsApi.md#createorders) | **POST** /orders | Create one or more shipments and their documents. (This is the primary call of the API.)
+*ShipmentsAndLabelsApi* | [**getLabel**](docs/Api/ShipmentsAndLabelsApi.md#getlabel) | **GET** /labels | Download PDF document
+*ShipmentsAndLabelsApi* | [**getOrder**](docs/Api/ShipmentsAndLabelsApi.md#getorder) | **GET** /orders | Retrieve shipment documents - labels and customs documents
+*ShipmentsAndLabelsApi* | [**ordersAccountDelete**](docs/Api/ShipmentsAndLabelsApi.md#ordersaccountdelete) | **DELETE** /orders | Delete one or more shipments
 
 ## Models
 
-- [AssembleOrder](docs/Model/AssembleOrder.md)
-- [Awb](docs/Model/Awb.md)
-- [Bag](docs/Model/Bag.md)
-- [BagItemContentDto](docs/Model/BagItemContentDto.md)
-- [BagItemDto](docs/Model/BagItemDto.md)
-- [BagOrder](docs/Model/BagOrder.md)
-- [BagPaperwork](docs/Model/BagPaperwork.md)
-- [BulkBagDto](docs/Model/BulkBagDto.md)
-- [BulkOrderDto](docs/Model/BulkOrderDto.md)
-- [ClosedBag](docs/Model/ClosedBag.md)
-- [Content](docs/Model/Content.md)
+- [BankAccount](docs/Model/BankAccount.md)
+- [Commodity](docs/Model/Commodity.md)
+- [Consignee](docs/Model/Consignee.md)
+- [ContactAddress](docs/Model/ContactAddress.md)
 - [Country](docs/Model/Country.md)
-- [CwsErrorDTO](docs/Model/CwsErrorDTO.md)
-- [GetAccessTokenInfo401Response](docs/Model/GetAccessTokenInfo401Response.md)
-- [GetAccessTokenInfoResponse](docs/Model/GetAccessTokenInfoResponse.md)
-- [GetAccessTokenResponse](docs/Model/GetAccessTokenResponse.md)
-- [Item](docs/Model/Item.md)
-- [ItemData](docs/Model/ItemData.md)
-- [Language](docs/Model/Language.md)
-- [MixedBagOrderDTO](docs/Model/MixedBagOrderDTO.md)
-- [Order](docs/Model/Order.md)
-- [OrderData](docs/Model/OrderData.md)
-- [Paperwork](docs/Model/Paperwork.md)
-- [ReturnItem](docs/Model/ReturnItem.md)
-- [ReturnItemResponse](docs/Model/ReturnItemResponse.md)
-- [RevokeAccessTokenResponse](docs/Model/RevokeAccessTokenResponse.md)
+- [CustomsDetails](docs/Model/CustomsDetails.md)
+- [Dimensions](docs/Model/Dimensions.md)
+- [Document](docs/Model/Document.md)
+- [GetManifestData](docs/Model/GetManifestData.md)
+- [LabelDataResponse](docs/Model/LabelDataResponse.md)
+- [Locker](docs/Model/Locker.md)
+- [MultipleManifestResponse](docs/Model/MultipleManifestResponse.md)
+- [POBox](docs/Model/POBox.md)
+- [PostOffice](docs/Model/PostOffice.md)
+- [RequestStatus](docs/Model/RequestStatus.md)
+- [ResponseItem](docs/Model/ResponseItem.md)
+- [ServiceInformation](docs/Model/ServiceInformation.md)
+- [ServiceInformationAmp](docs/Model/ServiceInformationAmp.md)
+- [ServiceInformationBackend](docs/Model/ServiceInformationBackend.md)
 - [Shipment](docs/Model/Shipment.md)
-- [Tracking](docs/Model/Tracking.md)
-- [TrackingEvent](docs/Model/TrackingEvent.md)
-- [V3Tracking](docs/Model/V3Tracking.md)
-- [V3TrackingEvent](docs/Model/V3TrackingEvent.md)
-- [Validation](docs/Model/Validation.md)
+- [ShipmentDetails](docs/Model/ShipmentDetails.md)
+- [ShipmentManifestingRequest](docs/Model/ShipmentManifestingRequest.md)
+- [ShipmentOrderRequest](docs/Model/ShipmentOrderRequest.md)
+- [ShipmentShipper](docs/Model/ShipmentShipper.md)
+- [Shipper](docs/Model/Shipper.md)
+- [ShipperReference](docs/Model/ShipperReference.md)
+- [ShortResponseItem](docs/Model/ShortResponseItem.md)
+- [SingleManifestResponse](docs/Model/SingleManifestResponse.md)
+- [VAS](docs/Model/VAS.md)
+- [VASCashOnDelivery](docs/Model/VASCashOnDelivery.md)
+- [VASDhlRetoure](docs/Model/VASDhlRetoure.md)
+- [VASIdentCheck](docs/Model/VASIdentCheck.md)
+- [ValidationMessageItem](docs/Model/ValidationMessageItem.md)
+- [Value](docs/Model/Value.md)
+- [Weight](docs/Model/Weight.md)
 
 ## Authorization
-All endpoints do not require authorization.
+
+Authentication schemes defined for the API:
+### BasicAuth
+
+- **Type**: HTTP basic authentication
+
+### ApiKey
+
+- **Type**: API key
+- **API key parameter name**: dhl-api-key
+- **Location**: HTTP header
+
+
 ## Tests
 
 To run the tests, use:
@@ -165,5 +149,6 @@ vendor/bin/phpunit
 
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `5.7.7`
+- API version: `2.1.9`
+    - Generator version: `7.6.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

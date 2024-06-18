@@ -1,6 +1,6 @@
 {
     "name": "spysystem/dhl-parcel",
-    "description": "Welcome to the Deutsche Post International API! <br/><br/> This API provides an interface for our shipping and tracking services. It enables open integration channels for our customers and partners.",
+    "description": "Note: This is the specification of the DPDHL Group Parcel DE Shipping API for Post & Parcel Germany. This REST web service allows business customers to create shipping labels on demand.",
     "keywords": [
         "openapitools",
         "openapi-generator",
@@ -14,7 +14,7 @@
     "license": "unlicense",
     "authors": [
         {
-            "name": "OpenAPI-Generator contributors",
+            "name": "OpenAPI",
             "homepage": "https://openapi-generator.tech"
         }
     ],

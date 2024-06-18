@@ -4,9 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**awb** | **string** | Transport document issued by a carrier or a forwarder towards the business customer. | [optional] [readonly]
-**items** | [**\Spy\DHLParcel\Model\Item[]**](Item.md) | The items associated with this shipment. | [optional] [readonly]
-**bags** | [**\Spy\DHLParcel\Model\BulkBagDto[]**](BulkBagDto.md) | The bags associated with this order. | [optional]
-**order** | [**\Spy\DHLParcel\Model\Order**](Order.md) |  |
+**product** | **string** | Determines the DHL Paket product to be used.  * V01PAK: DHL PAKET; * V53WPAK: DHL PAKET International; * V54EPAK: DHL Europaket; * V62WP: Warenpost; * V66WPI: Warenpost International | [optional]
+**billing_number** | **string** | 14 digit long number that identifies the contract the shipment is booked on. Please note that in rare cases the last to characters can be letters. Digit 11 and digit 12 must correspondent to the number of the product, e.g. 333333333301tt can only be used for the product V01PAK (DHL Paket). | [optional]
+**ref_no** | **string** | A reference number that the user can assign for better association purposes. It appears on shipment labels. To use the reference number for tracking purposes, it should be at least 8 characters long and unique. | [optional]
+**cost_center** | **string** | Textfield that appears on the shipment label. It cannot be used to search for the shipment. | [optional]
+**creation_software** | **string** | Is only to be indicated by DHL partners. | [optional]
+**ship_date** | **\DateTime** | Date the shipment is transferred to DHL. The shipment date can be the current date or a date up to a few days in the future. It must not be in the past. Iso format required: yyyy-mm-dd. On the shipment date the shipment will be automatically closed at your end of day closing time. | [optional]
+**shipper** | [**\Spy\DHLParcel\Model\ShipmentShipper**](ShipmentShipper.md) |  | [optional]
+**consignee** | [**\Spy\DHLParcel\Model\Consignee**](Consignee.md) |  | [optional]
+**details** | [**\Spy\DHLParcel\Model\ShipmentDetails**](ShipmentDetails.md) |  | [optional]
+**services** | [**\Spy\DHLParcel\Model\VAS**](VAS.md) |  | [optional]
+**customs** | [**\Spy\DHLParcel\Model\CustomsDetails**](CustomsDetails.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
