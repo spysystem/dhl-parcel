@@ -13,7 +13,7 @@ docker run \
     generate \
     --generator-name php \
     --config /local/config.yaml \
-    --input-spec /local/src/DeutschePostInternational.yaml \
+    --input-spec /local/src/openAPISpecificationFile.yaml \
     --output /local
 
 git add . > /dev/null 2>&1
